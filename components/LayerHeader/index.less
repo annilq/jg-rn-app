@@ -1,0 +1,20 @@
+.layer-header {
+  display: flex;
+  .button-wrapper {
+    flex: 1;
+    display: flex;
+    text-align: right;
+    justify-content: flex-end;
+    div {
+      color: #6e6d6e;
+      padding: 0 20px;
+      cursor: pointer;
+      &:not(:last-child) {
+        border-right: 1px solid #e0e0e0;
+      }
+      & > :first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+}

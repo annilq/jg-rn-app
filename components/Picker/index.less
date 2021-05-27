@@ -1,0 +1,23 @@
+.pickerList {
+  height: auto;
+  overflow: hidden;
+  line-height: 26px;
+  font-size: 14px;
+  color: #333;
+  :global {
+    .picker-item {
+      border: 1px solid;
+      border-radius: 4px;
+      border: solid 1px #d9d9d9;
+      padding: 0 20px;
+      margin: 0 5px;
+      float: left;
+      cursor: pointer;
+      &.active {
+        background-color: @primary-color;
+        border-color: transparent;
+        color: #fff;
+      }
+    }
+  }
+}
