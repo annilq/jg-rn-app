@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Text, View,TextInput } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
 
 import { ValidatorTypes } from '@/components/CustomForm/controlTypes';
 import TreePicker from '@/components/CustomForm/TreePicker';
@@ -74,19 +74,19 @@ class JgNumber extends PureComponent<NumberProps> {
     }
 
     return (
-      <div className={className} style={{ display: 'flex', alignItems: 'center' }}>
+      <View className={className} style={{ display: 'flex', alignItems: 'center' }}>
         {readOnly ? (
-          <>{com}</>
+          <Text>{com}</Text>
         ) : (
-            <TextInput
-              value={value}
-              {...numberProps}
-              placeholder={placeholder}
-              style={{ flex: 1 }}
-              onChange={onChange}
-              {...rest}
-            />
-          )}
+          <TextInput
+            value={value}
+            {...numberProps}
+            placeholder={placeholder}
+            style={{ flex: 1 }}
+            onChange={onChange}
+            {...rest}
+          />
+        )}
         <Text style={{ marginLeft: 5 }}>
           {unitType === 2 ? unit && (
             <TreePicker
@@ -99,12 +99,11 @@ class JgNumber extends PureComponent<NumberProps> {
               style={{ marginRight: '10px' }}
               store={window.g_app._store}
               value={formdata[unit]}
-            //
             />
           ) : localUnit}
         </Text>
 
-      </div>
+      </View>
     );
   }
 }

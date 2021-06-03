@@ -57,7 +57,7 @@ function Main(props) {
   }
   // 展开详情
   const showDetail = (record) => {
-    navigation.navigate("detailpage",{ url: `id=${record.id}&path=${path}&formCode=${formCode}` });
+    navigation.navigate("DetailScreen",{ url: `id=${record.id}&path=${path}&formCode=${formCode}` });
   };
 
   // usePageEvent('onPullDownRefresh', () => {

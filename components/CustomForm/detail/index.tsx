@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { getRouterConfig } from '@/models/menu';
-
-import { useDetailCom } from '@/hooks/useDetailCom';
+// import { useDetailCom } from '@/hooks/useDetailCom';
+// import { getConfigFormFormCode } from '@/components/CustomForm/routerConfig'
+import Detail from '@/components/CustomForm/detail/combine';
 
 interface IProps {
   formCode: string;
@@ -10,14 +10,16 @@ interface IProps {
 }
 
 function DetailPage(props: IProps) {
-  const { formCode, route, ...rest } = props;
-  const curRouter = route || getRouterConfig({ formCode });
-  const { component: Component } = useDetailCom(curRouter.componentPath);
-  if (!Component) {
-    return false
-  }
+  const { formCode, ...rest } = props;
+  // const curRouter = getConfigFormFormCode(formCode);
+  // console.log(curRouter);
+  // const { component: Component } = useDetailCom(curRouter.componentPath);
+  // if (!Component) {
+  //   return false
+  // }
+  console.log(formCode);
   return (
-    <Component formCode={formCode} {...rest} />
+    <Detail formCode={formCode} {...rest} />
   );
 }
 

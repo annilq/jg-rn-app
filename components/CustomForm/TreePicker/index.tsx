@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { SearchOutlined } from '@ant-design/icons';
 
-import { TextInput, Text } from 'react-native';
+import { TextInput, View, Text } from 'react-native';
 import { baseUrl } from '@/services/api';
 
 interface TreeSelectorProps {
@@ -123,7 +123,7 @@ class TreePicker extends React.PureComponent<IProps, IStates> {
       return name ? <Text>{name}</Text> : <Text>{(value && value.toString() || false)}</Text>;
     }
     return (
-      <span onClick={this.picktreedata}>
+      <View onClick={this.picktreedata}>
         <TextInput
           value={name}
           placeholder={placeholder}
@@ -131,7 +131,7 @@ class TreePicker extends React.PureComponent<IProps, IStates> {
           // suffix={<SearchOutlined />}
           {...rest}
         />
-      </span>
+      </View>
     );
   }
 }

@@ -4,6 +4,7 @@ import * as React from 'react';
 import LoginScreen from '../screens/LoginScreen';
 import WorkScreen from '../screens/Work';
 import FlowList from '../screens/FlowList';
+import DetailScreen from '../screens/DetailScreen';
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
@@ -15,7 +16,7 @@ export default function LoginNavigator() {
       <AppStack.Screen
         name="LoginScreen"
         component={LoginScreen}
-        options={{ headerTitle: 'login' }}
+        options={{ headerTitle: '登录页面' }}
       />
       <AppStack.Screen
         name="WorkScreen"
@@ -24,7 +25,12 @@ export default function LoginNavigator() {
       <AppStack.Screen
         name="FlowListScreen"
         component={FlowList}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: '列表页面' }}
+      />
+      <AppStack.Screen
+        name="DetailScreen"
+        component={DetailScreen}
+        options={{ headerTitle: '详情页面' }}
       />
     </AppStack.Navigator>
   );

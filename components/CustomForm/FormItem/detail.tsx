@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import ErrorBoundary from './errorhandle';
 import { ConTypes } from '@/components/CustomForm/controlTypes';
 // import LayerPage from '@/components/LayerPage';
+import { View, Image, Text } from 'react-native';
 
 import {
   DataSelecter,
@@ -17,7 +18,7 @@ import {
 // import RelationData from '@/components/CustomForm/RelationData/detail';
 // import RangePicker from '@/components/CustomForm/JgDatePicker/rangepicker';
 // import DetailModal from '@/components/CustomForm/DetailModal/detail';
-const NODATA_TEXT = "-"
+const NODATA_TEXT = <Text>-</Text>
 
 interface FormDetailProps {
   data: JgFormProps.ControlConfig;
@@ -35,21 +36,21 @@ class FormItemData extends PureComponent<FormDetailProps> {
     let render;
     switch (controlType) {
       // 下拉框
-      case ConTypes.TEXTAREA:
-        render = (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: value && value.replace('\n', '<br/>') || NODATA_TEXT,
-            }}
-          />
-        );
-        break;
+      // case ConTypes.TEXTAREA:
+      //   render = (
+      //     <div
+      //       dangerouslySetInnerHTML={{
+      //         __html: value && value.replace('\n', '<br/>') || NODATA_TEXT,
+      //       }}
+      //     />
+      //   );
+      //   break;
       // 下拉框
       // 单选框
       case ConTypes.SELECT:
       case ConTypes.RADIO:
         render = (
-          <DataSelecter extraProps={data.extraProps} store={window.g_app._store}>
+          <DataSelecter extraProps={data.extraProps}>
             {candidates => {
               // 适配下拉框多选功能
               if (!value || candidates.length === 0) {
@@ -64,9 +65,9 @@ class FormItemData extends PureComponent<FormDetailProps> {
                     return parseInt(item.value, 10) === parseInt(currentValue, 10)
                   }
                 });
-                return candidate && candidate.label
+                return <Text>{candidate && candidate.label}</Text>
               });
-              return labels.join(",") || NODATA_TEXT
+              return labels.length > 0 ? <>{labels}</> : NODATA_TEXT
             }}
           </DataSelecter>
         );
@@ -75,13 +76,13 @@ class FormItemData extends PureComponent<FormDetailProps> {
       // 多选框
       case ConTypes.CHECKBOXG:
         render = (
-          <DataSelecter extraProps={extraProps} store={window.g_app._store}>
+          <DataSelecter extraProps={extraProps}>
             {(candidates) => {
               const label = value.reduce((accumulator, currentValue) => {
                 const obj = candidates.find(item => parseInt(item.value, 10) === parseInt(currentValue, 10));
                 return accumulator + (obj ? `${obj.label},` : '');
               }, '');
-              return label;
+              return <Text>{label}</Text>;
             }}
           </DataSelecter>
         );
@@ -100,15 +101,15 @@ class FormItemData extends PureComponent<FormDetailProps> {
           }
           const relateArr = (formdata[nameCode] && formdata[nameCode].split(',')) || [];
           const values = (value && String(value).split(',')) || [];
+
           const nodes = values.map((value, index) => (
-            <span
+            <Text
               style={{
                 color: '#4095ff',
-                cursor: 'pointer',
               }}
               key={value}
               // 关联数据查看详情
-              onClick={(e) => {
+              onTap={(e) => {
                 e.stopPropagation()
                 // LayerPage.showPage(
                 //   <DetailModal formConfig={data} id={values[index]} store={window.g_app._store} />
@@ -117,11 +118,11 @@ class FormItemData extends PureComponent<FormDetailProps> {
               }
             >
               {relateArr[index] || NODATA_TEXT}
-            </span>
+            </Text>
           ));
-          render = <>{nodes.length > 0 ? nodes : NODATA_TEXT}</>;
+          render = nodes.length > 0 ? nodes : NODATA_TEXT;
         } else {
-          render = formdata[nameCode];
+          render = <Text>{formdata[nameCode]}</Text>;
         }
 
         break;
@@ -133,7 +134,6 @@ class FormItemData extends PureComponent<FormDetailProps> {
             style={{ width: '120px' }}
             value={value}
             disabled
-            store={window.g_app._store}
           />
         );
         break;
@@ -193,7 +193,7 @@ class FormItemData extends PureComponent<FormDetailProps> {
         break;
       default:
         // 默认显示文字
-        render = value;
+        render = <Text>{value}</Text>;
         break;
     }
     return render || NODATA_TEXT;

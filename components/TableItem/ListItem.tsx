@@ -31,7 +31,8 @@ function TableItemCell(props: IProps) {
                 {column.render
                   ? <View>{column.render(data[column.dataIndex], data, index)}</View>
                   : <Text style={styles.text} >{(data[column.dataIndex] || "无数据")}</Text>
-                }</View>
+                }
+                </View>
             ))}
           </View>
           {/* <View> {children}</View> */}

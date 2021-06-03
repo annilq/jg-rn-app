@@ -3,13 +3,15 @@
 // 如果是修改sysVersionId,versionId取值来源拓展字段，新增的话取表单配置
 
 import React, { PureComponent } from 'react';
-import { Tooltip } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { View, Image, Text } from 'react-native';
+
+// import { Tooltip } from 'antd';
+// import { QuestionCircleOutlined } from '@ant-design/icons';
 import FormItemData from '@/components/CustomForm/FormItem/detail';
 import { ConTypes } from '@/components/CustomForm/controlTypes';
 import SectionHeader from '@/components/SectionHeader';
 
-import styles from '../index.less';
+// import styles from '../index.less';
 
 interface IProps {
   // detail data
@@ -65,21 +67,21 @@ class FormDetail extends PureComponent<IProps> {
         break;
     }
     return (
-      this.lawfulValues(formdata[controlCode]) && (<div
-        data-id={controlId}
-        key={controlId}
-        data-controltype={controlType}
-        className="form-info-item"
-      >
-        <div className="form-info-label" style={{ ...labelwrap && { width: "100%", lineHeight: "30px" } }}>{controlLabel}{comment && (
-          <Tooltip title={comment} trigger={["click"]}>
-            <QuestionCircleOutlined />
-          </Tooltip>
-        )}</div>
-        <div className="form-info-value">
-          <FormItemData data={data} formdata={formdata} />
-        </div>
-      </div>)
+      this.lawfulValues(formdata[controlCode]) && (
+        <View
+          data-id={controlId}
+          key={controlId}
+          data-controltype={controlType}
+          className="form-info-item"
+        >
+          <Text className="form-info-label"
+            style={{ ...labelwrap && { width: "100%", lineHeight: "30px" } }}>
+            {controlLabel}
+          </Text>
+          <View className="form-info-value">
+            <FormItemData data={data} formdata={formdata} />
+          </View>
+        </View>)
     );
   };
 
@@ -94,30 +96,30 @@ class FormDetail extends PureComponent<IProps> {
       // 详情默认添加创建人和创建时间
       if (currentIndex === 0) {
         forms.push(
-          <> {formdata.creatorName && <div key="creatorName" className="form-info-item">
-            <div className="form-info-label">创建人</div>
-            <div className="form-info-value">{formdata.creatorName}</div>
-          </div>}
-            {formdata.createTime && <div key="creatorTime" className="form-info-item">
-              <div className="form-info-label">创建时间</div>
-              <div className="form-info-value">{formdata.createTime}</div>
-            </div>}
+          <> {formdata.creatorName && <Text key="creatorName" className="form-info-item">
+            <Text className="form-info-label">创建人</Text>
+            <Text className="form-info-value">{formdata.creatorName}</Text>
+          </Text>}
+            {formdata.createTime && <Text key="creatorTime" className="form-info-item">
+              <Text className="form-info-label">创建时间</Text>
+              <Text className="form-info-value">{formdata.createTime}</Text>
+            </Text>}
             {formdata.sendUsers && (
-              <div key="sendUsers" className="form-info-item">
-                <div className="form-info-label">抄送人</div>
-                <div className="form-info-value">
+              <Text key="sendUsers" className="form-info-item">
+                <Text className="form-info-label">抄送人</Text>
+                <Text className="form-info-value">
                   {JSON.parse(formdata.sendUsers)
                     .map(item => item.name)
                     .join(',')}
-                </div>
-              </div>
+                </Text>
+              </Text>
             )}
           </>
         );
       }
 
       const formContainer = (
-        <div
+        <View
           key={container.containerId}
           className="containers"
           style={{
@@ -130,8 +132,8 @@ class FormDetail extends PureComponent<IProps> {
               title={container.name}
               style={{ lineHeight: '40px', marginBottom: '0' }}
             />)} */}
-          <div className="form-container-content">{forms}</div>
-        </div>
+          <View className="form-container-content">{forms}</View>
+        </View>
       );
       return acc.concat(formContainer);
     }, []);
@@ -141,18 +143,18 @@ class FormDetail extends PureComponent<IProps> {
     const { containers, children } = this.props;
     const forms = this.getForms(containers);
     return (
-      <div
+      <View
         style={{
           display: 'flex',
           flexDirection: 'column',
           padding: 0,
           margin: 0,
         }}
-        className={styles.formDetailContainer}
+      // className={styles.formDetailContainer}
       >
         {forms}
         {children}
-      </div>
+      </View>
     );
   }
 }
