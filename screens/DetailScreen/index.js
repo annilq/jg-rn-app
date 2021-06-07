@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // import { useHeaderBar, useEditCom } from '@/hooks/useDetailCom';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 
 import { Edit as BaseForm } from '@/components/CustomForm';
 import Detail from './detail';

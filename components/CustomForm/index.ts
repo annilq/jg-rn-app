@@ -2,7 +2,7 @@
 // import Address from './Address';
 // import DataPicker from './DataPicker';
 import DataSelecter from './DataSelecter';
-// import Detail from './detail';
+import Detail from './detail';
 // import Edit from './edit';
 import FilePreview from './FilePreview';
 // import FileUpload from './FileUpload';
@@ -26,7 +26,7 @@ export {
   // DataPicker,
   DataSelecter,
   // Edit,
-  // Detail,
+  Detail,
   FilePreview,
   ImagePreview,
   ImageUpload,

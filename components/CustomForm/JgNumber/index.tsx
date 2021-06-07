@@ -74,7 +74,7 @@ class JgNumber extends PureComponent<NumberProps> {
     }
 
     return (
-      <View className={className} style={{ display: 'flex', alignItems: 'center' }}>
+      <View className={className} style={{ display: 'flex' }}>
         {readOnly ? (
           <Text>{com}</Text>
         ) : (
@@ -86,23 +86,19 @@ class JgNumber extends PureComponent<NumberProps> {
             onChange={onChange}
             {...rest}
           />
-        )}
-        <Text style={{ marginLeft: 5 }}>
-          {unitType === 2 ? unit && (
-            <TreePicker
-              extraProps={{
-                nameCode: 'unit',
-                url: '/api/v1/system/unit/getAllUnit',
-                combineType: 2,
-              }}
-              readOnly
-              style={{ marginRight: '10px' }}
-              store={window.g_app._store}
-              value={formdata[unit]}
-            />
-          ) : localUnit}
-        </Text>
-
+        )}{unitType === 2 ? unit && (
+          <TreePicker
+            extraProps={{
+              nameCode: 'unit',
+              url: '/api/v1/system/unit/getAllUnit',
+              combineType: 2,
+            }}
+            readOnly
+            style={{ marginRight: '10px' }}
+            store={window.g_app._store}
+            value={formdata[unit]}
+          />
+        ) : localUnit && <Text style={{ marginLeft: 5 }}>{localUnit}</Text>}
       </View>
     );
   }

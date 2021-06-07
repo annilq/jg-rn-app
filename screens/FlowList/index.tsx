@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { View, Image,Text } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // import SearchForm from '@/components/CustomForm/JgSearchForm';
@@ -30,7 +30,7 @@ function Main(props) {
 
   // 展开编辑,编辑统一跳转到新页面，不在侧边滑出
   const showEdit = () => {
-    navigation.navigate("Editpage",{ url: `?path=${path}&formCode=${formCode}` });
+    navigation.navigate("Editpage", { url: `?path=${path}&formCode=${formCode}` });
   };
 
   const onSearch = (params) => {
@@ -57,7 +57,7 @@ function Main(props) {
   }
   // 展开详情
   const showDetail = (record) => {
-    navigation.navigate("DetailScreen",{ url: `id=${record.id}&path=${path}&formCode=${formCode}` });
+    navigation.navigate("DetailScreen", { id: record.id, path, formCode });
   };
 
   // usePageEvent('onPullDownRefresh', () => {

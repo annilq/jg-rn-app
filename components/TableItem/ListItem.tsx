@@ -17,11 +17,9 @@ function TableItemCell(props: IProps) {
   const cols = columns.slice(0, defalutColsLength);
   return (
     <TouchableWithoutFeedback onPress={onItemClick}>
-      <View
-      >
+      <View>
         <View>
-          <View
-          >
+          <View>
             {cols.map((column, index) => (
               <View
                 key={column.title}

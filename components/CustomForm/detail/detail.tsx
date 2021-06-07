@@ -5,13 +5,10 @@
 import React, { PureComponent } from 'react';
 import { View, Image, Text } from 'react-native';
 
-// import { Tooltip } from 'antd';
-// import { QuestionCircleOutlined } from '@ant-design/icons';
 import FormItemData from '@/components/CustomForm/FormItem/detail';
 import { ConTypes } from '@/components/CustomForm/controlTypes';
-import SectionHeader from '@/components/SectionHeader';
 
-// import styles from '../index.less';
+import styles from '../style';
 
 interface IProps {
   // detail data
@@ -72,13 +69,14 @@ class FormDetail extends PureComponent<IProps> {
           data-id={controlId}
           key={controlId}
           data-controltype={controlType}
-          className="form-info-item"
+          style={styles.formInfoItem}
         >
-          <Text className="form-info-label"
-            style={{ ...labelwrap && { width: "100%", lineHeight: "30px" } }}>
+          <Text
+            style={styles.formInfoLabel}
+          >
             {controlLabel}
           </Text>
-          <View className="form-info-value">
+          <View style={styles.formInfoValue}>
             <FormItemData data={data} formdata={formdata} />
           </View>
         </View>)
@@ -96,23 +94,28 @@ class FormDetail extends PureComponent<IProps> {
       // 详情默认添加创建人和创建时间
       if (currentIndex === 0) {
         forms.push(
-          <> {formdata.creatorName && <Text key="creatorName" className="form-info-item">
-            <Text className="form-info-label">创建人</Text>
-            <Text className="form-info-value">{formdata.creatorName}</Text>
-          </Text>}
-            {formdata.createTime && <Text key="creatorTime" className="form-info-item">
-              <Text className="form-info-label">创建时间</Text>
-              <Text className="form-info-value">{formdata.createTime}</Text>
-            </Text>}
+          <>
+            {formdata.creatorName &&
+              <View key="creatorName" style={styles.formInfoItem}>
+                <Text style={styles.formInfoLabel}>创建人</Text>
+                <Text style={styles.formInfoValue}>{formdata.creatorName}</Text>
+              </View>
+            }
+            {formdata.createTime &&
+              <View key="creatorTime" style={styles.formInfoItem}>
+                <Text style={styles.formInfoLabel}>创建时间</Text>
+                <Text style={styles.formInfoValue}>{formdata.createTime}</Text>
+              </View>
+            }
             {formdata.sendUsers && (
-              <Text key="sendUsers" className="form-info-item">
-                <Text className="form-info-label">抄送人</Text>
-                <Text className="form-info-value">
+              <View key="sendUsers" style={styles.formInfoItem}>
+                <Text style={styles.formInfoLabel}>抄送人</Text>
+                <Text style={styles.formInfoValue}>
                   {JSON.parse(formdata.sendUsers)
                     .map(item => item.name)
                     .join(',')}
                 </Text>
-              </Text>
+              </View>
             )}
           </>
         );
@@ -121,18 +124,13 @@ class FormDetail extends PureComponent<IProps> {
       const formContainer = (
         <View
           key={container.containerId}
-          className="containers"
+          style="containers"
           style={{
             justifyContent: container.justifyContent,
             textAlign: container.align || 'left',
           }}
         >
-          {/* {container.name && (
-            <SectionHeader
-              title={container.name}
-              style={{ lineHeight: '40px', marginBottom: '0' }}
-            />)} */}
-          <View className="form-container-content">{forms}</View>
+          <View style="form-container-content">{forms}</View>
         </View>
       );
       return acc.concat(formContainer);
@@ -147,10 +145,10 @@ class FormDetail extends PureComponent<IProps> {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          padding: 0,
+          padding: 10,
           margin: 0,
+          backgroundColor:"#fff"
         }}
-      // className={styles.formDetailContainer}
       >
         {forms}
         {children}

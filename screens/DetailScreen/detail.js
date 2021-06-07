@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View,ScrollView } from 'react-native';
 
 // import FlowCommonComponent from '@/components/FlowCommonComponent';
 
@@ -17,14 +17,14 @@ function DetailPage(props) {
   const { tableConfig: config } = useFormConfig(formCode, { sysVersionId, versionId });
   console.log(item);
   return (
-    <View style={{ height: "100%" }}>
+    <ScrollView style={{ height: "100%" }}>
       {/* 审批和查看详情用不同的模板 */}
       <Detail item={item} formCode={formCode} />
       {/* 公共模块 */}
       {/* <FlowCommonComponent id={id} formCode={formCode} data={item} /> */}
       {/* 底部操作栏，包含撤回，催办等逻辑 */}
       {/* {DetailActions && <DetailActions formCode={formCode} data={item} config={config} path={path} />} */}
-    </View>
+    </ScrollView>
   );
 }
 
